@@ -51,8 +51,7 @@ minetest.register_node("sponge:sponge", {  -- dry sponge
     groups = {crumbly=3},
     sounds = default.node_sound_dirt_defaults(),
     
-    on_place = function(itemstack, placer, pointed_thing)
-        local pos = minetest.get_pointed_thing_position(pointed_thing, pointed_thing.above)
+    after_place_node = function(pos, placer, itemstack, pointed_thing)
         local name = placer:get_player_name()
         
         if not minetest.is_protected(pos, name) then
@@ -74,19 +73,14 @@ minetest.register_node("sponge:sponge", {  -- dry sponge
                     end
                 end
             end
-        
-        
-            if count > 3 then  -- only turns soggy if it removed more than 3 nodes
+
+            if count > 3 then  -- turns soggy if it removed more than 3 nodes
                 minetest.set_node(pos, {name="sponge:soggy_sponge"})
-            else
-                minetest.set_node(pos, {name="sponge:sponge"})
             end
-            itemstack:take_item(1)
         end
-        return itemstack
     end,
     
-    on_destruct = destruct
+    after_dig_node = destruct
 })
 
 
