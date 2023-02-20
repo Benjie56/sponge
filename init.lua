@@ -1,18 +1,17 @@
 --[[
-  -  Sponge mod for Minetest
-  -  water removal for survival
-
-made by Benjie/Fiftysix - 27/8/18
-updated 22/12/20
+  -  Minetest Sponge mod
+  -  Water removing sponges for Minetest
+  -  Created by Benjie/fiftysix/56 2018-08-27 - Last updated 2023-02-20
+  -  Copyright Benjie 2018-2023
 
 Soggy sponges can rarely be found deep in the sea where the darkness begins.
-These can be cooked into dry sponges, and then placed near a liquid to remove an area of it
+These can be cooked into dry sponges, and then placed near a liquid to remove the surrounding cube of it
 They will hold the water away until they are removed.
 This will cause them to become soggy, so to use them again they have to be cooked.
 
-Sponges create a 9x9 area of air-like nodes that water can't flow through (checks for protection)
+Sponges create a 9x9x9 cube of air-like nodes that water can't flow through (checks for protection)
 If sponges have cleared more than 3 nodes of liquid, they become soggy sponges
-removing a sponge or soggy sponge will turn a 9x9 area of air-like nodes back into air
+removing a sponge or soggy sponge will turn a 9x9x9 cube of air-like nodes back into air
 (air-like nodes can be removed in protection by removing a sponge outside the protection, they are not meant to be permanent)
 ]]--
 

@@ -1,10 +1,11 @@
-# Minetest sponge mod
+# Minetest Sponge mod
 ## Water-removing sponges for Minetest.
 
-made by Benjie/Fiftysix - 27/8/18
-updated 22/12/20
+Created by Benjie/fiftysix/56 2018-08-27 - Last updated 2023-02-20
+Copyright Benjie 2018-2023
 
 [Forum topic](https://forum.minetest.net/viewtopic.php?f=9&t=20729)
+[Download from ContentDB](https://content.minetest.net/packages/FiftySix/sponge/)
 
 Soggy sponges can rarely be found deep in the sea where the darkness begins.
 These can be cooked into dry sponges, and then placed near a liquid to remove an area of it
