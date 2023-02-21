@@ -47,9 +47,9 @@ local destruct = function(pos)  -- removing the air-like nodes
     )
     local sponges = {}
     for _, p in pairs(sponge_info) do
-        local node = minetest.get_node(p)
+        local node = minetest.get_node(p[1])
         if node.param1 == 1 or node.name == modname..":sponge" then
-            table.insert(sponges, p)
+            table.insert(sponges, p[1])
         end
     end
 
