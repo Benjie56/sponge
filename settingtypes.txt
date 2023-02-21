@@ -8,3 +8,13 @@ sponge_group_list (Group list) string water
 # If the groups in the group list should be treated as a whitelist or blacklist for removing liquids.
 # The *_source variants will remove all flowing liquids regardless of the list.
 sponge_group_list_type (Group list type) enum whitelist_source whitelist,whitelist_source,blacklist,blacklist_source,ignored
+
+# Radius of sphere or cube of liquid that gets removed
+sponge_radius (Radius) float 4.5 1 39.9
+
+# Whether to use a sphere shape to remove liquids
+sponge_shape_sphere (Sphere shape) bool true
+
+# Replace liquids with air instead of liquid blocking nodes.
+# This causes water to flow back immediately after placing the sponge
+sponge_replace_with_air (Replace with air) bool false
