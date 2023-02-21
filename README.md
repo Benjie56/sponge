@@ -19,13 +19,13 @@ This will cause them to become soggy, so to use them again they have to be cooke
 *(Air-like nodes can be removed in protection by removing a sponge outside the protection, they are not meant to be permanent)*
 
 ### Options:
-**Replace air nodes**: boolean, default true
+**Replace air nodes** (sponge_replace_air_nodes): boolean, default true
 Causes sponges not to replace air with water blocking airlike nodes. Disabling this may cause unusual behaviour with flowing water.
 
-**Group list**: list, default: water
+**Group list** (sponge_group_list): list, default: water
 List of group names as group1,group2,... (common groups are water, liquid and lava)
 See "Group list type" (sponge_group_list_type) for the behaviour of this list.
 
-**Group list type**: multi-choice, default whitelist_source
+**Group list type** (sponge_group_list_type): multi-choice, default whitelist_source
 If the groups in the group list should be treated as a whitelist or blacklist for removing liquids.
 The *_source variants will remove all flowing liquids regardless of the list.
