@@ -15,10 +15,26 @@ removing a sponge or soggy sponge will turn a 9x9x9 cube of air-like nodes back 
 (air-like nodes can be removed in protection by removing a sponge outside the protection, they are not meant to be permanent)
 ]]--
 
+
+local modname = minetest.get_current_modname()
+
 local area = 4  -- The "radius" (of the cube) to clear water
 local keep_dry = 3  -- The maximum amount of water cleared where the sponge doesn't turn soggy
 
-local modname = minetest.get_current_modname()
+-- Load configurable options
+local replace_air_nodes = minetest.settings:get_bool("sponge_replace_air_nodes", true)
+local group_list = minetest.settings:get("sponge_group_list", false) or "water"
+local group_list_type = minetest.settings:get("sponge_group_list_type") or "whitelist_source"
+
+-- returns true if groups contains anything in list
+local compare_groups = function(list, groups)
+    for group in list:gmatch("([^,]+)") do
+        if groups[group] and groups[group] > 0 then
+            return true
+        end
+    end
+    return false
+end
 
 
 -- called by after_destruct()
@@ -71,17 +87,46 @@ local construct = function(pos, placer, itemstack, pointed_thing)
         for x = pos.x-area, pos.x+area do
             for y = pos.y-area, pos.y+area do
                 for z = pos.z-area, pos.z+area do
+                    local p = {x=x, y=y, z=z}
                     
-                    local n = minetest.get_node({x=x, y=y, z=z}).name
+                    local n = minetest.get_node(p).name
                     local def = minetest.registered_nodes[n]
-                    if def ~= nil and (n == "air" or def["drawtype"] == "liquid" or def["drawtype"] == "flowingliquid") then
-                        local p = {x=x, y=y, z=z}
-                        if not minetest.is_protected(p, playername) then
-                            if n ~= "air" then
-                                count = count + 1  -- counting liquids
+                    local replace = false
+                    if def == nil or minetest.is_protected(p, playername) then
+                        -- replace = false
+                    elseif replace_air_nodes and n == "air" then
+                        replace = true
+                    elseif def["drawtype"] == "flowingliquid" then
+                        if group_list_type == "whitelist" then
+                            if compare_groups(group_list, def.groups or {}) then
+                                replace = true
                             end
-                            minetest.set_node(p, {name=modname..":liquid_stop"})
+                        elseif group_list_type == "blacklist" then
+                            if not compare_groups(group_list, def.groups or {}) then
+                                replace = true
+                            end
+                        else
+                            replace = true
                         end
+                    elseif def["drawtype"] == "liquid" then
+                        if group_list_type == "whitelist" or group_list_type == "whitelist_source" then
+                            if compare_groups(group_list, def.groups or {}) then
+                                replace = true
+                            end
+                        elseif group_list_type == "blacklist" or group_list_type == "blacklist_source" then
+                            if not compare_groups(group_list, def.groups or {}) then
+                                replace = true
+                            end
+                        else
+                            replace = true
+                        end
+                    end
+
+                    if replace then
+                        if n ~= "air" then
+                            count = count + 1  -- counting liquids
+                        end
+                        minetest.set_node(p, {name=modname..":liquid_stop"})
                     end
                 end
             end

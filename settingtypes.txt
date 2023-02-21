@@ -1,0 +1,10 @@
+# Causes sponges not to replace air with water blocking airlike nodes. Disabling this may cause unusual behaviour with flowing water.
+sponge_replace_air_nodes (Replace air nodes) bool true
+
+# List of group names as group1,group2,... (common groups are water, liquid and lava)
+# See "Group list type" (sponge_group_list_type) for the behaviour of this list.
+sponge_group_list (Group list) string water
+
+# If the groups in the group list should be treated as a whitelist or blacklist for removing liquids.
+# The *_source variants will remove all flowing liquids regardless of the list.
+sponge_group_list_type (Group list type) enum whitelist_source whitelist,whitelist_source,blacklist,blacklist_source,ignored

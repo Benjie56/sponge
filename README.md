@@ -17,3 +17,15 @@ This will cause them to become soggy, so to use them again they have to be cooke
 * If sponges have cleared more than 3 nodes of liquid, they become soggy sponges.
 * Removing a sponge or soggy sponge will turn a 9x9x9 cube of air-like nodes back into air, as long as they are not in the area of another sponge.
 *(Air-like nodes can be removed in protection by removing a sponge outside the protection, they are not meant to be permanent)*
+
+### Options:
+**Replace air nodes**: boolean, default true
+Causes sponges not to replace air with water blocking airlike nodes. Disabling this may cause unusual behaviour with flowing water.
+
+**Group list**: list, default: water
+List of group names as group1,group2,... (common groups are water, liquid and lava)
+See "Group list type" (sponge_group_list_type) for the behaviour of this list.
+
+**Group list type**: multi-choice, default whitelist_source
+If the groups in the group list should be treated as a whitelist or blacklist for removing liquids.
+The *_source variants will remove all flowing liquids regardless of the list.
