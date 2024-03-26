@@ -18,3 +18,6 @@ sponge_shape_sphere (Sphere shape) bool true
 # Replace liquids with air instead of liquid blocking nodes.
 # This causes water to flow back immediately after placing the sponge
 sponge_replace_with_air (Replace with air) bool false
+
+# Depth at which sponges start generating
+sponge_generation_depth (Generation depth) int -9

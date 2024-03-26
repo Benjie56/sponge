@@ -213,7 +213,7 @@ minetest.register_decoration({  -- sponges are found deep in the sea
     spawn_by = "default:water_source",
     num_spawn_by = 3,
     fill_ratio = 0.0003,
-    y_max = -12,
+    y_max = minetest.settings:get("sponge_generation_depth") or -9,
     flags = "force_placement",
     decoration = modname..":soggy_sponge",
 })
